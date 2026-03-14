@@ -1,5 +1,4 @@
 import { ConvexReactClient } from "convex/react"
-import { GenericId } from "convex/values"
 
 const STORAGE_KEY = "convex_url"
 
@@ -16,9 +15,11 @@ export function clearStoredConvexUrl(): void {
 }
 
 let convexClient: ConvexReactClient | null = null
+let convexUrl: string = ""
 
 export function createConvexClient(url: string): ConvexReactClient {
   convexClient = new ConvexReactClient(url)
+  convexUrl = url
   return convexClient
 }
 
@@ -35,8 +36,8 @@ export function isValidConvexUrl(url: string): boolean {
   }
 }
 
-export async function queryConvex<T>(client: ConvexReactClient, queryName: string, args: Record<string, unknown>): Promise<T> {
-  const response = await fetch(`${client.serverUrl}/api/query`, {
+export async function queryConvex<T>(queryName: string, args: Record<string, unknown>): Promise<T> {
+  const response = await fetch(`${convexUrl}/api/query`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

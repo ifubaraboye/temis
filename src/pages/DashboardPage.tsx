@@ -46,7 +46,8 @@ export function DashboardPage() {
     
     setIsLoadingTables(true)
     try {
-      const result = await client.query("api:listTables", {})
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = await (client as any).query("api:listTables", {})
       const tableNames: TableInfo[] = result.map((t: { tableName?: string; name?: string }) => ({
         name: t.tableName || t.name || "",
         documentCount: 0,
@@ -85,7 +86,8 @@ export function DashboardPage() {
         const prevData = tableData.get(tableName) || []
         setPreviousData((prev) => new Map(prev).set(tableName, prevData))
 
-        const result = await client.query("api:listTable", { tableName })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const result = await (client as any).query("api:listTable", { tableName })
         
         setTableData((prev) => new Map(prev).set(tableName, result))
         

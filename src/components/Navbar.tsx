@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Database, Copy, Check, LogOut } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 interface NavbarProps {
   deploymentUrl: string

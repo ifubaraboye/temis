@@ -99,7 +99,13 @@ const Header = () => {
 };
 
 // Individual hero panel — shows 1/N slice of the panorama using background-image
-const HeroPanel = ({ index, totalPanels, image }) => {
+interface HeroPanelProps {
+  index: number;
+  totalPanels: number;
+  image: string;
+}
+
+const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
   const [hovered, setHovered] = useState(false);
 
   // background-size: N*100% makes the image span N panel-widths total.
@@ -177,7 +183,12 @@ const Hero = () => {
   );
 };
 
-const CategoryCard = ({ title, image }) => {
+interface CategoryCardProps {
+  title: string;
+  image: string;
+}
+
+const CategoryCard = ({ title, image }: CategoryCardProps) => {
   return (
     <div className="flex flex-col gap-3 group cursor-pointer">
       <div className="relative overflow-hidden rounded-2xl aspect-[3/4] w-full">
@@ -209,7 +220,14 @@ const Categories = () => (
   </section>
 );
 
-const FeatureRow = ({ reversed, image, title, subtitle }) => (
+interface FeatureRowProps {
+  reversed?: boolean;
+  image: string;
+  title: string;
+  subtitle: string;
+}
+
+const FeatureRow = ({ reversed = false, image, title, subtitle }: FeatureRowProps) => (
   <div className={`flex flex-col ${reversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center py-3`}>
     <div className="w-full md: relative group overflow-hidden rounded-2xl">
       <img src={image} alt={title} className="w-full h-[400px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -232,7 +250,7 @@ const Collections = () => (
         <span className="text-sm font-medium lowercase">collections</span>
         <a href="#" className="text-[10px] uppercase tracking-widest text-gray-500 hover:text-black transition-colors">See all &gt;</a>
       </div>
-      <FeatureRow image={IMAGES.collection1} subtitle="Harmattan SS26" title="fits of the highlanders" />
+      <FeatureRow reversed={false} image={IMAGES.collection1} subtitle="Harmattan SS26" title="fits of the highlanders" />
       <FeatureRow reversed image={IMAGES.collection2} subtitle="Heat SS26" title="highlife" />
     </div>
   </section>

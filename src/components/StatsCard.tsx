@@ -1,9 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import type { ReactNode } from "react"
 
 interface StatsCardProps {
   title: string
-  value: string | number
+  value: string | number | ReactNode
   subtitle?: string
 }
 
