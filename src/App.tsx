@@ -26,8 +26,8 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-50 bg-white py-6">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="relative z-50 bg-white py-6 px-10">
+      <div className="w-full flex justify-between items-center">
         <div className="hidden md:block w-1/4">
           <p className="text-[10px] uppercase tracking-widest leading-tight text-[#3F3F3F]">
             Essential silhouettes, natural textures, and effortless layering for every season.
@@ -103,13 +103,10 @@ interface HeroPanelProps {
   index: number;
   totalPanels: number;
   image: string;
+  isHovered: boolean;
 }
 
-const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
-  const [hovered, setHovered] = useState(false);
-
-  // background-size: N*100% makes the image span N panel-widths total.
-  // background-position: index/(N-1)*100% picks the correct horizontal slice.
+const HeroPanel = ({ index, totalPanels, image, isHovered }: HeroPanelProps) => {
   const bgPos = `${(index / (totalPanels - 1)) * 100}% center`;
 
   return (
@@ -120,8 +117,6 @@ const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
         height: '85vh',
         cursor: 'pointer',
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       {/* Background layer handles zoom via background-size change */}
       <div
@@ -129,7 +124,7 @@ const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
           position: 'absolute',
           inset: 0,
           backgroundImage: `url(${image})`,
-          backgroundSize: `${totalPanels * (hovered ? 106 : 100)}% auto`,
+          backgroundSize: `${totalPanels * (isHovered ? 106 : 100)}% auto`,
           backgroundPosition: bgPos,
           backgroundRepeat: 'no-repeat',
           transition: 'background-size 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -141,7 +136,7 @@ const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.18) 100%)',
-          opacity: hovered ? 1 : 0.4,
+          opacity: isHovered ? 1 : 0.4,
           transition: 'opacity 0.5s ease',
           pointerEvents: 'none',
         }}
@@ -152,18 +147,24 @@ const HeroPanel = ({ index, totalPanels, image }: HeroPanelProps) => {
 
 const Hero = () => {
   const PANEL_COUNT = 4;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <section className="px-4 md:px-8">
-      <div className="container mx-auto">
-        {/* 4-panel split panorama — no bottom radius */}
-        <div className="flex gap-3 md:gap-4">
+      <div className="w-full">
+        {/* hover on any panel triggers zoom on all panels */}
+        <div
+          className="flex gap-3 md:gap-4"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           {Array.from({ length: PANEL_COUNT }).map((_, idx) => (
             <HeroPanel
               key={idx}
               index={idx}
               totalPanels={PANEL_COUNT}
               image={IMAGES.heroPanorama}
+              isHovered={hovered}
             />
           ))}
         </div>
@@ -210,7 +211,7 @@ const CategoryCard = ({ title, image }: CategoryCardProps) => {
 
 const Categories = () => (
   <section className="py-12 px-4 md:px-8">
-    <div className="container mx-auto">
+    <div className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <CategoryCard title="trousers" image={IMAGES.category1} />
         <CategoryCard title="skirts"   image={IMAGES.category2} />
@@ -244,7 +245,7 @@ const FeatureRow = ({ reversed = false, image, title, subtitle }: FeatureRowProp
 
 const Collections = () => (
   <section className="py-12 px-4 md:px-8 bg-white">
-    <div className="container mx-auto">
+    <div className="w-full">
       {/* Section header */}
       <div className="flex items-center gap-6">
         <span className="text-sm font-medium lowercase">collections</span>
@@ -258,7 +259,7 @@ const Collections = () => (
 
 const InfoGrid = () => (
   <section className="py-20 px-4 md:px-8">
-    <div className="container mx-auto">
+    <div className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {['stores', 'get in touch', 'faq'].map((item) => (
           <div key={item} className="bg-[#D9D9D9] rounded-t-4xl p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
@@ -275,7 +276,7 @@ const InfoGrid = () => (
 
 const Footer = () => (
   <footer className="py-12 px-4 md:px-8 border-t border-gray-100">
-    <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
       <div className="flex gap-6 text-[10px] uppercase tracking-widest text-gray-500">
         <a href="#" className="hover:text-black">Contact Us</a>
         <span>/</span>
