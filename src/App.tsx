@@ -43,9 +43,9 @@ const Header = () => {
           <div className="w-1/4 flex justify-end">
             <div className="flex flex-col items-center gap-0.5">
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 cursor-pointer rounded-full">
-                <img src="/burger.svg" alt="Menu" className="w-18 h-auto" />
+                <img src="/burger.svg" alt="Menu" className="w-18 md:w-18 2xl:w-24 h-auto" />
               </button>
-              <span className="text-sm font-medium tracking-wide">for africa</span>
+              <span className="text-sm md:text-sm 2xl:text-xl font-medium tracking-wide">for africa</span>
             </div>
           </div>
         </div>
@@ -60,8 +60,8 @@ const Header = () => {
             opacity: mobileMenuOpen ? 1 : 0,
             transition: 'opacity 0.35s ease',
             background: 'rgba(80,100,120,0.45)',
-            backdropFilter: 'blur(22px)',
-            WebkitBackdropFilter: 'blur(22px)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-end',
@@ -77,7 +77,7 @@ const Header = () => {
               onClick={(e) => { e.stopPropagation(); setMobileMenuOpen(false); }}
               style={{
                 fontFamily: "'Courier New', monospace",
-                fontSize: 'clamp(1.5rem, 5vw, 2.4rem)',
+                fontSize: 'clamp(1.5rem, 5vw, 1.7rem)',
                 fontWeight: 400,
                 color: 'white',
                 textAlign: 'right',
@@ -117,14 +117,15 @@ const Hero = () => {
           {panels.map((panel, idx) => (
             <div
               key={idx}
-              className="overflow-hidden rounded-2xl aspect-[9/16] cursor-pointer"
+              className="overflow-hidden rounded-2xl aspect-[9/16] group"
             >
-              <img
-                src={IMAGES.heroPanorama}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-500"
+              <div 
+                className="w-full h-full transition-transform duration-500"
                 style={{
-                  objectPosition: panel.bgPos,
+                  backgroundImage: `url(${IMAGES.heroPanorama})`,
+                  backgroundSize: '400% auto',
+                  backgroundPosition: panel.bgPos,
+                  backgroundRepeat: 'no-repeat',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
                 }}
               />
@@ -236,9 +237,9 @@ const InfoGrid = () => (
 );
 
 const Footer = () => (
-  <footer className="py-12 px-4 md:px-8 border-t border-gray-100">
+  <footer className="py-12 px-4 md:px-8 ">
     <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
-      <div className="flex gap-6 text-[10px] uppercase tracking-widest text-gray-500">
+      <div className="flex text-[3F3F3F] gap-6 text-[10px] uppercase">
         <a href="#" className="hover:text-black">Contact Us</a>
         <span>/</span>
         <a href="#" className="hover:text-black">Privacy Policy</a>
@@ -247,8 +248,11 @@ const Footer = () => (
         <span>/</span>
         <a href="#" className="hover:text-black">Team</a>
       </div>
+      <div className="flex-1 flex pr-48 justify-center">
+        <img src="/fav.svg" alt="" className="h-8 scale-160" />
+      </div>
       <div className="text-center md:text-right">
-        <img src="/logo.svg" alt="Tésmi" className="h-10 mb-2 mx-auto md:mx-0" />
+        <img src="/logo.svg" alt="Tésmi" className="h-10 mb-2 mx-auto md:mx-0 mb-5" />
         <p className="text-[10px] text-gray-400">© 2026. Tesmi Africa. All Rights Reserved.</p>
       </div>
     </div>
