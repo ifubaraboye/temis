@@ -15,8 +15,8 @@ const IMAGES = {
 };
 
 const AnnouncementBar = () => (
-  <div className="w-full bg-[#D9D9D9] py-1 px-4 text-center border-b ">
-    <p className="text-[13px] uppercase tracking-widest text-[#3F3F3F]">
+  <div className="w-full bg-[#D9D9D9] py-1 px-6 text-center border-b ">
+    <p className="text-xs uppercase tracking-widest text-[#3F3F3F]">
       Essential silhouettes, natural textures, and effortless layering for every season.
     </p>
   </div>
@@ -28,11 +28,11 @@ const Header = () => {
   return (
     <>
       <AnnouncementBar />
-      <header className="relative z-50 bg-white py-6 px-10">
+      <header className="relative z-50 bg-white py-6 px-6">
         <div className="w-full flex justify-between items-center">
           <div className="hidden md:block w-1/4">
             <p className="text-[10px] uppercase tracking-widest leading-tight text-[#3F3F3F]">
-              Essential silhouettes, natural textures, and effortless layering for every season.
+              Essential silhouettes, natural textures, and <br className='hidden 2xl:inline-block' /> effortless layering for every season.
             </p>
           </div>
 
@@ -98,77 +98,37 @@ const Header = () => {
   );
 };
 
-interface HeroPanelProps {
-  index: number;
-  totalPanels: number;
-  image: string;
-  isHovered: boolean;
-  grow: number;
-}
-
-const HeroPanel = ({ index, totalPanels, image, isHovered, grow }: HeroPanelProps) => {
-  const bgPos = `${(index / (totalPanels - 1)) * 100}% center`;
-
-  return (
-    <div
-      style={{
-        borderRadius: '28px 28px 0 0',
-        height: '85vh',
-        cursor: 'pointer',
-        minWidth: 0,
-        position: 'relative',
-        overflow: 'hidden',
-        flex: `${grow} 1 0%`,
-        maxWidth: grow > 1 ? '40%' : '25%',
-      }}
-    >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: `url(${image})`,
-          backgroundSize: `${totalPanels * (isHovered ? 106 : 100)}% auto`,
-          backgroundPosition: bgPos,
-          backgroundRepeat: 'no-repeat',
-          transition: 'background-size 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.18) 100%)',
-          opacity: isHovered ? 1 : 0.4,
-          transition: 'opacity 0.5s ease',
-          pointerEvents: 'none',
-        }}
-      />
-    </div>
-  );
-};
-
 const Hero = () => {
-  const PANEL_COUNT = 4;
-  const [hovered, setHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const panels = [
+    { bgPos: '0% 50%' },
+    { bgPos: '33.33% 50%' },
+    { bgPos: '66.66% 50%' },
+    { bgPos: '100% 50%' },
+  ];
 
   return (
-    <section className="px-4 md:px-8 overflow-hidden">
-      <div className="w-full">
-        <div
-          className="flex gap-3 md:gap-4"
-          style={{ width: '100%' }}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
+    <section className="pb-12 px-4">
+      <div 
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {Array.from({ length: PANEL_COUNT }).map((_, idx) => (
-            <HeroPanel
+          {panels.map((panel, idx) => (
+            <div
               key={idx}
-              index={idx}
-              totalPanels={PANEL_COUNT}
-              image={IMAGES.heroPanorama}
-              isHovered={hovered}
-              grow={idx === 0 ? 1.5 : 1}
-            />
+              className="overflow-hidden rounded-2xl aspect-[9/16] cursor-pointer"
+            >
+              <img
+                src={IMAGES.heroPanorama}
+                alt=""
+                className="w-full h-full object-cover transition-transform duration-500"
+                style={{
+                  objectPosition: panel.bgPos,
+                  transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                }}
+              />
+            </div>
           ))}
         </div>
 
@@ -180,11 +140,11 @@ const Hero = () => {
           <a href="#" className="text-[10px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-60">
             Check out collection &gt;
           </a>
-        </div>
       </div>
     </section>
   );
 };
+
 
 interface CategoryCardProps {
   title: string;
