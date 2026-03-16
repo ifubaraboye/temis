@@ -45,14 +45,14 @@ const Hero = () => {
   return (
     <section className="pb-12 px-4">
       <div 
-        className="grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-3 md:gap-4"
+        className="grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-3 md:gap-2"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {panels.map((panel, idx) => (
             <div
               key={idx}
-              className={`overflow-hidden rounded-2xl group ${panel.className || ''}`}
+              className={`overflow-hidden rounded-[50px] group ${panel.className || ''}`}
             >
               <div 
                 className="w-full h-full transition-transform duration-500"
