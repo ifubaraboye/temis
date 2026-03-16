@@ -1,7 +1,7 @@
 const Footer = () => (
   <footer className="py-12 px-4 md:px-8 ">
     <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6">
-      <div className="flex text-[3F3F3F] gap-6 text-[10px] uppercase">
+      <div className="flex text-[#3F3F3F] font-semibold gap-6 text-[10px] uppercase">
         <a href="#" className="hover:text-black">Contact Us</a>
         <span>/</span>
         <a href="#" className="hover:text-black">Privacy Policy</a>
