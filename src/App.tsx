@@ -68,15 +68,7 @@ const Hero = () => {
           ))}
         </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-6 px-2 gap-4">
-          <div className="flex items-center gap-4">
-            <span className="font-serif italic text-xl">Life of the highlanders</span>
-            <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
-          </div>
-          <a href="#" className="text-[10px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-60">
-            Check out collection &gt;
-          </a>
-      </div>
+      
     </section>
   );
 };
@@ -110,6 +102,15 @@ const CategoryCard = ({ title, image }: CategoryCardProps) => {
 const Categories = () => (
   <section className="py-12 px-4 md:px-8">
     <div className="w-full">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+        <div className="flex items-center gap-4">
+          <span className="font-serif italic text-xl">Life of the highlanders</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
+        </div>
+        <a href="#" className="text-[10px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-60">
+          Check out collection &gt;
+        </a>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <CategoryCard title="trousers" image={IMAGES.category1} />
         <CategoryCard title="skirts"   image={IMAGES.category2} />
