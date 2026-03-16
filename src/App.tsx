@@ -28,18 +28,18 @@ const Hero = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const panels = isMobile 
+  const panels = isMobile
     ? [
-        { bgPos: '0% 50%', className: "aspect-[9/16]" },
-        { bgPos: '33.33% 50%', className: "aspect-[9/16]" },
-        { bgPos: '66.66% 50%', className: "aspect-[9/16]" },
-        { bgPos: '100% 50%', className: "aspect-[9/16]" },
+        { bgPos: '0% 50%', className: "h-[57vh]" },
+        { bgPos: '33.33% 50%', className: "h-[57vh]" },
+        { bgPos: '66.66% 50%', className: "h-[57vh]" },
+        { bgPos: '100% 50%', className: "h-[57vh]" },
       ]
     : [
-        { bgPos: '0% 50%', className: "aspect-[9/16] md:aspect-auto" },
-        { bgPos: '44.44% 50%', className: "aspect-[9/16]" },
-        { bgPos: '72.22% 50%', className: "aspect-[9/16]" },
-        { bgPos: '100% 50%', className: "aspect-[9/16]" },
+        { bgPos: '0% 50%', className: "h-[80vh] md:aspect-auto" },
+        { bgPos: '44.44% 50%', className: "h-[80vh]" },
+        { bgPos: '72.22% 50%', className: "h-[80vh]" },
+        { bgPos: '100% 50%', className: "h-[80vh]" },
       ];
 
   return (

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const AnnouncementBar = () => (
-  <div className="w-full bg-[#D9D9D9] pt-[1px] px-6 text-center border-b ">
+  <div className="w-full bg-[#D9D9D9] pt-[1px] px-6 text-center border-b border-black ">
     <p className="text-xs font-faktum uppercase tracking-widest text-[#3F3F3F]">
       Essential silhouettes, natural textures, and effortless layering for every season.
     </p>
@@ -20,7 +20,7 @@ const Header = () => {
       <header className="relative z-50 bg-white py-6 px-6">
         <div className="w-full flex justify-between items-center">
           <div className="hidden md:block w-1/4">
-            <p className="text-[10px] uppercase tracking-widest leading-tight text-[#3F3F3F]">
+            <p className="text-[10px] uppercase font-medium tracking-widest leading-tight text-[#3F3F3F]">
               Essential silhouettes, natural textures, and <br className='hidden 2xl:inline-block' /> effortless layering for every season.
             </p>
           </div>
