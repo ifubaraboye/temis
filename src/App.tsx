@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/Header';
@@ -19,30 +19,46 @@ const IMAGES = {
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const panels = [
-    { bgPos: '0% 50%' },
-    { bgPos: '33.33% 50%' },
-    { bgPos: '66.66% 50%' },
-    { bgPos: '100% 50%' },
-  ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const panels = isMobile 
+    ? [
+        { bgPos: '0% 50%', className: "aspect-[9/16]" },
+        { bgPos: '33.33% 50%', className: "aspect-[9/16]" },
+        { bgPos: '66.66% 50%', className: "aspect-[9/16]" },
+        { bgPos: '100% 50%', className: "aspect-[9/16]" },
+      ]
+    : [
+        { bgPos: '0% 50%', className: "aspect-[9/16] md:aspect-auto" },
+        { bgPos: '44.44% 50%', className: "aspect-[9/16]" },
+        { bgPos: '72.22% 50%', className: "aspect-[9/16]" },
+        { bgPos: '100% 50%', className: "aspect-[9/16]" },
+      ];
 
   return (
     <section className="pb-12 px-4">
       <div 
-        className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
+        className="grid grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-3 md:gap-4"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {panels.map((panel, idx) => (
             <div
               key={idx}
-              className="overflow-hidden rounded-2xl aspect-[9/16] group"
+              className={`overflow-hidden rounded-2xl group ${panel.className || ''}`}
             >
               <div 
                 className="w-full h-full transition-transform duration-500"
                 style={{
                   backgroundImage: `url(${IMAGES.heroPanorama})`,
-                  backgroundSize: '400% auto',
+                  backgroundSize: isMobile ? '400% auto' : (idx === 0 ? '287.5% auto' : '460% auto'),
                   backgroundPosition: panel.bgPos,
                   backgroundRepeat: 'no-repeat',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
@@ -52,7 +68,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-6 px-2 gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-6 px-2 gap-4">
           <div className="flex items-center gap-4">
             <span className="font-serif italic text-xl">Life of the highlanders</span>
             <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
