@@ -90,7 +90,7 @@ interface CategoryCardProps {
 const CategoryCard = ({ title, image }: CategoryCardProps) => {
   return (
     <div className="flex flex-col gap-3 group cursor-pointer">
-      <div className="relative overflow-hidden rounded-2xl aspect-[3/4] w-full">
+      <div className="relative overflow-hidden rounded-[50px] aspect-[3/4] w-full">
         <img
           src={image}
           alt={title}
@@ -128,7 +128,7 @@ interface FeatureRowProps {
 
 const FeatureRow = ({ reversed = false, image, title, subtitle }: FeatureRowProps) => (
   <div className={`flex flex-col ${reversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-8 md:gap-16 items-center py-3`}>
-    <div className="w-full md:w-2/3 relative group overflow-hidden rounded-2xl">
+    <div className="w-full md:w-2/3 relative group overflow-hidden rounded-[50px]">
       <img src={image} alt={title} className="w-full h-[400px] md:h-[450px] object-cover transition-transform duration-700 group-hover:scale-105" />
     </div>
     <div className="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left px-4">
@@ -158,14 +158,14 @@ const InfoGrid = () => (
   <section className="py-20 px-4 md:px-8">
     <div className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link to="/stores" className="bg-[#D9D9D9] rounded-t-4xl p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
+        <Link to="/stores" className="bg-[#D9D9D9] rounded-t-[50px] p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
           <span className="text-lg font-medium lowercase">stores</span>
           <div className="w-8 h-8 rounded-full border border-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
             <ArrowRight size={14} />
           </div>
         </Link>
         {['get in touch', 'faq'].map((item) => (
-          <div key={item} className="bg-[#D9D9D9] rounded-t-4xl p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
+          <div key={item} className="bg-[#D9D9D9] rounded-t-[50px] p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
             <span className="text-lg font-medium lowercase">{item}</span>
             <div className="w-8 h-8 rounded-full border border-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
               <ArrowRight size={14} />
