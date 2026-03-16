@@ -106,10 +106,10 @@ const Categories = () => (
         <div className="flex items-center gap-4">
           <span className="font-serif italic text-xl">Life of the highlanders</span>
           <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
+          <a href="#" className="text-[10px] uppercase tracking-widest border-black pb-1 hover:opacity-60">
+            Check out collection &gt;
+          </a>
         </div>
-        <a href="#" className="text-[10px] uppercase tracking-widest border-b border-black pb-1 hover:opacity-60">
-          Check out collection &gt;
-        </a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <CategoryCard title="trousers" image={IMAGES.category1} />
