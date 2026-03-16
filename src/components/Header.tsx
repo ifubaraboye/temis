@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const AnnouncementBar = () => (
   <div className="w-full bg-[#D9D9D9] pt-[1px] px-6 text-center border-b ">
-    <p className="text-xs uppercase tracking-widest text-[#3F3F3F]">
+    <p className="text-xs font-faktum uppercase tracking-widest text-[#3F3F3F]">
       Essential silhouettes, natural textures, and effortless layering for every season.
     </p>
   </div>
