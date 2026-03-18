@@ -30,10 +30,7 @@ const Hero = () => {
 
   const panels = isMobile
     ? [
-        { bgPos: '0% 50%', className: "h-[57vh]" },
-        { bgPos: '33.33% 50%', className: "h-[57vh]" },
-        { bgPos: '66.66% 50%', className: "h-[57vh]" },
-        { bgPos: '100% 50%', className: "h-[57vh]" },
+        { bgPos: 'center', className: "h-[57vh] col-span-2" },
       ]
     : [
         { bgPos: '0% 50%', className: "h-[80vh] md:aspect-auto" },
@@ -58,7 +55,7 @@ const Hero = () => {
                 className="w-full h-full transition-transform duration-500"
                 style={{
                   backgroundImage: `url(${IMAGES.heroPanorama})`,
-                  backgroundSize: isMobile ? '400% auto' : (idx === 0 ? '287.5% auto' : '460% auto'),
+                  backgroundSize: isMobile ? 'cover' : (idx === 0 ? '287.5% auto' : '460% auto'),
                   backgroundPosition: panel.bgPos,
                   backgroundRepeat: 'no-repeat',
                   transform: isHovered ? 'scale(1.05)' : 'scale(1)',
@@ -67,8 +64,6 @@ const Hero = () => {
             </div>
           ))}
         </div>
-
-      
     </section>
   );
 };

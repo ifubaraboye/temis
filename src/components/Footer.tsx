@@ -10,7 +10,7 @@ const Footer = () => (
         <span>/</span>
         <a href="#" className="hover:text-black">Team</a>
       </div>
-      <div className="flex-1 flex pr-48 justify-center">
+      <div className="hidden md:flex flex-1 pr-48 justify-center">
         <img src="/fav.svg" alt="" className="h-8 scale-160" />
       </div>
       <div className="text-center md:text-right">
