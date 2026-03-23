@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { NewsletterForm } from '@/components/Newsletter';
 
 const IMAGES = {
   heroPanorama: "lisa.png",
@@ -15,6 +16,8 @@ const IMAGES = {
 
   collection1: "shirtcloseup.png",
   collection2: "shirtcloseup.png",
+
+  newsletterHero: "lisa.png",
 };
 
 const Hero = () => {
@@ -150,6 +153,31 @@ const Collections = () => (
   </section>
 );
 
+const NewsletterBanner = () => (
+  <section className="py-20 px-4 md:px-8 bg-white font-dresden">
+    <div className="flex items-center gap-6 py-2">
+      <span className="text-lg font-medium lowercase">collections</span>
+      <a href="#" className="text-[10px] uppercase tracking-widest text-gray-500 hover:text-black transition-colors">See all &gt;</a>
+    </div>
+    <div className="w-full space-y-7">
+      {/* Hero Image with "for africa" text */}
+      <div className="relative overflow-hidden rounded-[50px]">
+        <img
+          src={IMAGES.newsletterHero}
+          alt="For Africa"
+          className="w-full h-[400px] md:h-[450px] object-cover"
+        />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-white text-md md:text-xl font-dresden">for africa</span>
+        </div>
+      </div>
+
+      {/* Newsletter Subscription Form */}
+      <NewsletterForm />
+    </div>
+  </section>
+);
+
 const InfoGrid = () => (
   <section className="py-20 px-4 md:px-8">
     <div className="w-full">
@@ -181,6 +209,7 @@ export default function Home() {
         <Hero />
         <Categories />
         <Collections />
+        <NewsletterBanner />
         <InfoGrid />
       </main>
       <Footer />

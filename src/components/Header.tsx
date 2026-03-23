@@ -20,9 +20,12 @@ const Header = () => {
       <header className="relative z-50 bg-white py-4 md:py-6 px-4 md:px-6">
         <div className="w-full flex justify-between items-center">
           <div className="hidden md:block w-1/4">
-            <p className="text-[10px] uppercase font-medium tracking-widest leading-tight text-[#3F3F3F]">
-              Essential silhouettes, natural textures, and <br className='hidden 2xl:inline-block' /> effortless layering for every season.
-            </p>
+            <div className="flex flex-col">
+              <span className="text-md font-medium font-dresden lowercase leading-tight">for africa</span>
+              <p className="text-[9px] uppercase font-medium font-dresden tracking-widest leading-tight text-gray-400">
+                ESSENTIAL SILHOUETTES, NATURAL TEXTURES, AND EFFORTLESS
+              </p>
+            </div>
           </div>
 
           <div className="flex-1 flex justify-start md:justify-center">
@@ -34,9 +37,9 @@ const Header = () => {
           <div className="w-auto md:w-1/4 flex justify-end">
             <div className="flex flex-col items-center gap-0.5">
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 cursor-pointer rounded-full">
-                <img src="/burger.svg" alt="Menu" className="w-12 md:w-18 2xl:w-24 h-auto" />
+                <img src="/burger.svg" alt="Menu" className="w-12 md:w-18 2xl:w-20 h-auto" />
               </button>
-              <span className="text-xs md:text-sm 2xl:text-xl font-medium tracking-wide">for africa</span>
+              {/*<span className="text-xs md:text-sm  font-medium tracking-wide">for africa</span>*/}
             </div>
           </div>
         </div>
