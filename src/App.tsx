@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { InfoGrid } from '@/components/InfoGrid';
 import { NewsletterForm } from '@/components/Newsletter';
 
 const IMAGES = {
@@ -19,6 +18,43 @@ const IMAGES = {
 
   newsletterHero: "lisa.png",
 };
+
+const CATEGORY_IMAGES = {
+  category1: "trousers.png",
+  category2: "skirt.png",
+  category3: "shirt.png",
+};
+
+const CategoryCard = ({ title, image }: { title: string; image: string }) => (
+  <div className="flex flex-col gap-3 group cursor-pointer">
+    <div className="relative overflow-hidden rounded-[50px] aspect-[3/4] w-full">
+      <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+    </div>
+    <div className="flex items-center gap-6 px-1">
+      <span className="text-lg font-medium tracking-wide lowercase">{title}</span>
+      <span className="text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-black transition-colors">Shop now &gt;</span>
+    </div>
+  </div>
+);
+
+const CategoriesInline = () => (
+  <section className="py-12 px-4 md:px-8">
+    <div className="w-full">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+        <div className="flex items-center gap-4">
+          <span className="font-serif italic text-xl">Life of the highlanders</span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
+          <a href="#" className="text-[10px] uppercase tracking-widest border-black pb-1 hover:opacity-60">Check out collection &gt;</a>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <CategoryCard title="trousers" image={CATEGORY_IMAGES.category1} />
+        <CategoryCard title="skirts" image={CATEGORY_IMAGES.category2} />
+        <CategoryCard title="shirts" image={CATEGORY_IMAGES.category3} />
+      </div>
+    </div>
+  </section>
+);
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -70,53 +106,6 @@ const Hero = () => {
     </section>
   );
 };
-
-
-interface CategoryCardProps {
-  title: string;
-  image: string;
-}
-
-const CategoryCard = ({ title, image }: CategoryCardProps) => {
-  return (
-    <div className="flex flex-col gap-3 group cursor-pointer">
-      <div className="relative overflow-hidden rounded-[50px] aspect-[3/4] w-full">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex items-center gap-6 px-1">
-        <span className="text-lg font-medium tracking-wide lowercase">{title}</span>
-        <span className="text-[10px] uppercase tracking-widest text-gray-500 group-hover:text-black transition-colors">
-          Shop now &gt;
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const Categories = () => (
-  <section className="py-12 px-4 md:px-8">
-    <div className="w-full">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
-        <div className="flex items-center gap-4">
-          <span className="font-serif italic text-xl">Life of the highlanders</span>
-          <span className="text-[10px] uppercase tracking-widest text-gray-500">Harmattan SS26</span>
-          <a href="#" className="text-[10px] uppercase tracking-widest border-black pb-1 hover:opacity-60">
-            Check out collection &gt;
-          </a>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        <CategoryCard title="trousers" image={IMAGES.category1} />
-        <CategoryCard title="skirts"   image={IMAGES.category2} />
-        <CategoryCard title="shirts"   image={IMAGES.category3} />
-      </div>
-    </div>
-  </section>
-);
 
 interface FeatureRowProps {
   reversed?: boolean;
@@ -178,36 +167,13 @@ const NewsletterBanner = () => (
   </section>
 );
 
-const InfoGrid = () => (
-  <section className="py-20 px-4 md:px-8">
-    <div className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Link to="/stores" className="bg-[#D9D9D9] rounded-t-[50px] p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
-          <span className="text-lg font-medium lowercase">stores</span>
-          <div className="w-8 h-8 rounded-full border border-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-            <ArrowRight size={14} />
-          </div>
-        </Link>
-        {['get in touch', 'faq'].map((item) => (
-          <div key={item} className="bg-[#D9D9D9] rounded-t-[50px] p-8 h-64 flex flex-col justify-between group cursor-pointer hover:bg-gray-200 transition-colors">
-            <span className="text-lg font-medium lowercase">{item}</span>
-            <div className="w-8 h-8 rounded-full border border-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-              <ArrowRight size={14} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black font-sans selectionDresden Elektronik:bg-black selection:text-white">
       <Header />
       <main>
         <Hero />
-        <Categories />
+        <CategoriesInline />
         <Collections />
         <NewsletterBanner />
         <InfoGrid />
