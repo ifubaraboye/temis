@@ -29,7 +29,7 @@ const COMPLETE_THE_LOOK = [
 ];
 
 export function ProductPage() {
-  const { id } = useParams();
+  // const { id } = useParams();
   const [currentImage, setCurrentImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string | null>("S");
   const [selectedColor, setSelectedColor] = useState(COLORS[0].name);
